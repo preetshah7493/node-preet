@@ -16,20 +16,21 @@ app.get("/", function (req, res) {
 
       var newsArray = [];
 
-      const post_length = $("meta").children().length;
+      const post_length = $("html").children().length;
 
      
         let json = { heading: "", description: "", image: "", sourcelink: "", sourcename: "" };
 
        
       
-        $(".meta")
-          .find("og:type")
+         $("html")
+          .find("title")
           .filter(function () {
             var data = $(this);
-            contenttype = data.attr("content");
-            json.contenttype = contenttype;
+            heading = data.text();
+            json.heading = heading;
           });
+
       
         
           
