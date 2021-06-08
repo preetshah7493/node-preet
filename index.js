@@ -19,7 +19,7 @@ app.get("/", function (req, res) {
       const post_length = $("div.post-container").children().length;
 
       $("div.post-container").map((i, item) => {
-        let json = { heading: "", description: "", image: "" };
+        let json = { heading: "", description: "", image: "", sourcelink: "" };
 
         $(".post-container")
           .eq(i)
@@ -49,6 +49,17 @@ app.get("/", function (req, res) {
             image = data.attr("src");
             json.image = image;
           });
+          
+           $(".post-container")
+          .eq(i)
+          .find(".article-amp-provider")
+          .find("a")
+          .filter(function () {
+            var data = $(this);
+            image = data.attr("href");
+            json.image = sourcelink;
+          });
+          
 
         newsArray.push(json);
       });
