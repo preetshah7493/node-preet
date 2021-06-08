@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8000;
 app.use(cors());
 
 app.get("/", function (req, res) {
-  url = "https://www.60secondsnow.com/amphtml/gu";
+  url = "https://www.instagram.com/p/CP3IvPOnloG/";
 
   request(url, function (error, response, html) {
     if (!error) {
@@ -16,62 +16,27 @@ app.get("/", function (req, res) {
 
       var newsArray = [];
 
-      const post_length = $("div.post-container").children().length;
+      const post_length = $("meta").children().length;
 
-      $("div.post-container").map((i, item) => {
+     
         let json = { heading: "", description: "", image: "", sourcelink: "", sourcename: "" };
 
-        $(".post-container")
-          .eq(i)
-          .find(".article-content")
-          .find("h2")
+       
+      
+        $(".meta")
+          .find("og:type")
           .filter(function () {
             var data = $(this);
-            heading = data.text();
-            json.heading = heading;
+            contenttype = data.attr("content");
+            json.contenttype = contenttype;
           });
-
-        $(".post-container")
-          .eq(i)
-          .find(".article-desc")
-          .find("p")
-          .filter(function () {
-            var data = $(this);
-            description = data.text();
-            json.description = description;
-          });
-        $(".post-container")
-          .eq(i)
-          .find(".article-img")
-          .find("amp-img")
-          .filter(function () {
-            var data = $(this);
-            image = data.attr("src");
-            json.image = image;
-          });
-          $(".post-container")
-          .eq(i)
-          .find(".article-amp-provider")
-          .find("a")
-          .filter(function () {
-            var data = $(this);
-            sourcelink = data.attr("href");
-            json.sourcelink = sourcelink;
-          });
-        $(".post-container")
-          .eq(i)
-          .find(".article-amp-provider")
-          .find("a")
-          .filter(function () {
-            var data = $(this);
-            sourcename = data.text();
-            json.sourcename = sourcename;
-          });
+      
+        
           
    
 
         newsArray.push(json);
-      });
+  
     }
 
     res.send(newsArray);
