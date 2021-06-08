@@ -19,7 +19,7 @@ app.get("/", function (req, res) {
       const post_length = $("div.post-container").children().length;
 
       $("div.post-container").map((i, item) => {
-        let json = { heading: "", description: "", image: "", sourcelink: "" };
+        let json = { heading: "", description: "", image: "" };
 
         $(".post-container")
           .eq(i)
@@ -50,17 +50,7 @@ app.get("/", function (req, res) {
             json.image = image;
           });
           
-           $(".post-container")
-          .eq(i)
-          .find(".article-provider")
-          .find(".article-amp-provider")
-          .find("a")
-          .filter(function () {
-            var data = $(this);
-            image = data.attr("href");
-            json.sourcelink = sourcelink;
-          });
-          
+   
 
         newsArray.push(json);
       });
