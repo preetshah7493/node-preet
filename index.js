@@ -52,6 +52,7 @@ app.get("/", function (req, res) {
           
            $(".post-container")
           .eq(i)
+          .find(".article-provider")
           .find(".article-amp-provider")
           .find("a")
           .filter(function () {
