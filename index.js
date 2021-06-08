@@ -49,6 +49,15 @@ app.get("/", function (req, res) {
             image = data.attr("src");
             json.image = image;
           });
+          $(".post-container")
+          .eq(i)
+          .find(".article-amp-provider")
+          .find("a")
+          .filter(function () {
+            var data = $(this);
+            sourcelink = data.attr("href");
+            json.sourcelink = sourcelink;
+          });
           
    
 
